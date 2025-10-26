@@ -1,3 +1,4 @@
+// src/components/BackButton.jsx
 import { useNavigate } from "react-router-dom";
 
 export default function BackButton() {
@@ -6,7 +7,10 @@ export default function BackButton() {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="mt-6 ml-10 px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 transition duration-200"
+      className="relative overflow-hidden px-6 py-2 text-white font-semibold rounded-full shadow-md transition-all duration-300"
+      style={{
+        background: "linear-gradient(90deg, #9333EA 0%, #EC4899 100%)",
+      }}
     >
       ← Back
     </button>

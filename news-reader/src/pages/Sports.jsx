@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NewsList from "../components/NewsList";
 import { fetchNews } from "../services/newsService";
-import BackButton from "../components/BackButton"; // ✅ added
+import BackButton from "../components/BackButton";
 
 export default function Sports() {
   const [articles, setArticles] = useState([]);
@@ -11,9 +11,9 @@ export default function Sports() {
   }, []);
 
   return (
-    <div className="p-4">
-      <BackButton /> {/* ✅ back button at top */}
-      <h1 className="text-2xl font-bold text-center mt-4">Sports News</h1>
+    <div>
+      <BackButton />
+      <h1 className="text-3xl font-bold text-center mt-4 text-yellow-600">Sports Highlights</h1>
       <NewsList articles={articles} />
     </div>
   );

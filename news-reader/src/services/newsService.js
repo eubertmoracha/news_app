@@ -1,21 +1,24 @@
+// src/services/newsService.js
 import axios from "axios";
 
-const API_KEY = import.meta.env.VITE_THENEWS_API_KEY;
-const BASE_URL = "https://api.thenewsapi.com/v1/news/top";
+export const fetchNews = async (category = "general") => {
+  const API_TOKEN = "6gLZd8YBCuRmC8wf5bN1hZm2tch4pJfQjzOueOt8"; // your key
+  const url = `https://api.thenewsapi.com/v1/news/all?locale=us&language=en&categories=${category}&limit=10&api_token=${API_TOKEN}`;
 
-export async function fetchNews(category) {
   try {
-    const response = await axios.get(BASE_URL, {
-      params: {
-        api_token: API_KEY,
-        locale: "us",
-        limit: 10,
-        categories: category || "general",
-      },
-    });
-    return response.data.data; // 'data' array holds articles
+    const response = await axios.get(url);
+    console.log("Fetched news:", response.data);
+
+    // Add images for each article
+    return response.data.data.map(article => ({
+      title: article.title,
+      description: article.description,
+      url: article.url,
+      image: article.image_url || "https://via.placeholder.com/400x200?text=No+Image",
+      source: article.source,
+    }));
   } catch (error) {
-    console.error("Error fetching news: ", error);
+    console.error("Error fetching news:", error);
     return [];
   }
-}
+};

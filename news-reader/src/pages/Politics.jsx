@@ -1,20 +1,34 @@
-import { useEffect, useState } from "react";
-import NewsList from "../components/NewsList";
+import React, { useEffect, useState } from "react";
 import { fetchNews } from "../services/newsService";
-import BackButton from "../components/BackButton"; 
 
 export default function Politics() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetchNews("politics").then(setArticles);
+    const getNews = async () => {
+      const data = await fetchNews("politics");
+      setArticles(data);
+    };
+    getNews();
   }, []);
 
   return (
-    <div className="p-4">
-      <BackButton /> {/* ✅ added */}
-      <h1 className="text-2xl font-bold text-center mt-4">Politics News</h1>
-      <NewsList articles={articles} />
+    <div className="p-4 text-white">
+      <h1 className="text-2xl font-bold mb-4">Politics News</h1>
+      {articles.length > 0 ? (
+        <ul className="space-y-4">
+          {articles.map((item) => (
+            <li key={item.link} className="bg-gray-800 p-4 rounded-lg shadow">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+                {item.title}
+              </a>
+              <p className="text-gray-300 mt-2">{item.description}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No articles found.</p>
+      )}
     </div>
   );
 }

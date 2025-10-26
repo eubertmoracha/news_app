@@ -1,25 +1,24 @@
+// server.js
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config(); // ✅ Load .env variables
 
 const app = express();
 app.use(cors());
 
-const API_TOKEN = process.env.VITE_THENEWS_API_KEY; // ✅ Use .env value
+const API_TOKEN = "ZrtjOLgsi3emymePtOKx1sSixLQLEVuSdNJtCRuv";
 
-// Route to fetch news from TheNewsAPI
+// ✅ Fetch news dynamically by category
 app.get("/api/news", async (req, res) => {
+  const category = req.query.category || "general";
+
   try {
-    const category = req.query.category || "general"; // Allow dynamic category
     const response = await axios.get("https://api.thenewsapi.com/v1/news/top", {
       params: {
         api_token: API_TOKEN,
         locale: "us",
         limit: 10,
-        categories: category,
+        categories: category, // dynamically use the category
       },
     });
 
@@ -34,5 +33,5 @@ app.get("/api/news", async (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("✅ Backend server running on http://localhost:5000");
+  console.log("✅ Backend running on http://localhost:5000");
 });
