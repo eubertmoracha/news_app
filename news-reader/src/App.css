@@ -1,42 +1,81 @@
-#root {
-  max-width: 1280px;
+/* ---- Navbar layout & spacing ---- */
+.nav-root {
+  background: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.nav-inner {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
+/* logo */
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* links container */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+/* each link */
+.nav-link {
+  color: #5b21b6;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 160ms ease;
+}
+
+/* hover + active */
+.nav-link:hover {
+  color: #fff;
+  background: rgba(91, 33, 182, 0.12);
+}
+.nav-link.active {
+  color: #fff;
+  background: #5b21b6;
+}
+
+/* small screens */
+@media (max-width: 720px) {
+  .nav-inner {
+    padding: 10px 14px;
   }
-  to {
-    transform: rotate(360deg);
+  .nav-links {
+    gap: 14px;
+  }
+  .logo {
+    font-size: 1.25rem;
+  }
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 6px 8px;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 520px) {
+  .nav-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .nav-links {
+    justify-content: center;
+  }
 }
