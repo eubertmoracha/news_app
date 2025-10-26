@@ -1,66 +1,35 @@
+// src/components/Navbar.jsx
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const linkClass = ({ isActive }) =>
+    `font-medium px-3 py-2 rounded-md transition-colors ${
+      isActive ? "text-white bg-blue-600" : "text-gray-200 hover:text-white"
+    }`;
+
   return (
-    <nav className="bg-gray-900 shadow-md py-4 px-8 flex justify-evenly items-center">
-      <h1 className="text-2xl font-bold text-blue-400 tracking-wide">
-        News<span className="text-white">Reader</span>
-      </h1>
+    <nav className="bg-gray-900 shadow-md py-3">
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <div className="text-white font-bold text-lg">News Reader</div>
 
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          `font-medium text-gray-200 hover:text-blue-400 transition duration-200 ${
-            isActive ? "font-bold text-blue-400 border-b-2 border-blue-400" : ""
-          }`
-        }
-      >
-        Home
-      </NavLink>
-
-      <NavLink
-        to="/politics"
-        className={({ isActive }) =>
-          `font-medium text-gray-200 hover:text-blue-400 transition duration-200 ${
-            isActive ? "font-bold text-blue-400 border-b-2 border-blue-400" : ""
-          }`
-        }
-      >
-        Politics
-      </NavLink>
-
-      <NavLink
-        to="/social"
-        className={({ isActive }) =>
-          `font-medium text-gray-200 hover:text-blue-400 transition duration-200 ${
-            isActive ? "font-bold text-blue-400 border-b-2 border-blue-400" : ""
-          }`
-        }
-      >
-        Social
-      </NavLink>
-
-      <NavLink
-        to="/economy"
-        className={({ isActive }) =>
-          `font-medium text-gray-200 hover:text-blue-400 transition duration-200 ${
-            isActive ? "font-bold text-blue-400 border-b-2 border-blue-400" : ""
-          }`
-        }
-      >
-        Economy
-      </NavLink>
-
-      <NavLink
-        to="/sports"
-        className={({ isActive }) =>
-          `font-medium text-gray-200 hover:text-blue-400 transition duration-200 ${
-            isActive ? "font-bold text-blue-400 border-b-2 border-blue-400" : ""
-          }`
-        }
-      >
-        Sports
-      </NavLink>
+        <div className="flex space-x-2">
+          <NavLink to="/" className={linkClass}>
+            Home
+          </NavLink>
+          <NavLink to="/politics" className={linkClass}>
+            Politics
+          </NavLink>
+          <NavLink to="/economy" className={linkClass}>
+            Economy
+          </NavLink>
+          <NavLink to="/social" className={linkClass}>
+            Social
+          </NavLink>
+          <NavLink to="/sports" className={linkClass}>
+            Sports
+          </NavLink>
+        </div>
+      </div>
     </nav>
   );
 }
